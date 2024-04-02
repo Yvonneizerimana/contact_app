@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 const app = express();
-import configuration from './configs/index.js';
+import configuration  from './configs/index.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import contactRouter from './routes/contact.routes.js';

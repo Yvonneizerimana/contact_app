@@ -19,7 +19,7 @@ const contactSchema =new mongoose.Schema({
         unique:[true, "Phone number must be unique"]
     },
     workPhone: {
-        type: String,
+        type: String,  
         required:[true, "Work phone number is required"],
     },
     address: {
