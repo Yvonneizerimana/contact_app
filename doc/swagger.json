@@ -1,0 +1,177 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Contact-app",
+        "description": "This is a contact app that mimics the way we use contact apps in our phones or PCs. This back-end server will provide a complete API that can be used by a desktop, web, or mobile contact application.",
+        "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "schemes": ["http", "https"],
+    "paths": {
+        "/api/contact/create": {
+            "post": {
+                "summary": "Create a new contact",
+                "description": "Create a new contact in your database",
+                "tags": ["contacts"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/contact"
+                        },
+                        "required": true,
+                        "description": "Contact object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Contact created successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/contact/update/{id}": {
+            "put": {
+                "summary": "Update a contact",
+                "description": "Update an existing contact in your database",
+                "tags": ["contacts"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID of the contact to be updated",
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/contact"
+                        },
+                        "required": true,
+                        "description": "Updated contact object"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Contact updated successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/contact/list/{id}": {
+            "get": {
+                "summary": "Get contact by ID",
+                "description": "Get a contact by its ID",
+                "tags": ["contacts"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID of the contact to retrieve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact retrieved successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete contact by ID",
+                "description": "Delete a contact by its ID",
+                "tags": ["contacts"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID of the contact to delete"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contact deleted successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/contact/list": {
+            "get": {
+                "summary": "Get contact list",
+                "description": "Get a list of contacts",
+                "tags": ["contacts"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "all",
+                        "required": true,
+                        "description": "Get all contacts"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of contacts"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "contact": {
+            "type": "object",
+            "required": ["firstName", "lastName", "email", "phone", "workPhone"],
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "First name of the contact"
+                },
+                "lastName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "Last name of the contact"
+                },
+                "email": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "Email of the contact"
+                },
+                "phone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "Phone number of the contact"
+                },
+                "workPhone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "Work phone number of the contact"
+                }
+            }
+        }
+    }
+}

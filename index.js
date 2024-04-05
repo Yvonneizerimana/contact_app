@@ -7,7 +7,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import contactRouter from './routes/contact.routes.js';
 import errorHandler from './errorHandler/contactErrorHandler.js';
-
+import swaggerui from "swagger-ui-express"
+import swagger from "./doc/swagger.json" assert {type:"json"}
 //middleware
 
 app.use(express.json());
@@ -20,6 +21,8 @@ mongoose.connect(configuration.mongoURI)
 .then(() => {
  //routes
  app.use("/api/contact",contactRouter);
+ app.use('/api-docs', swaggerui.serve, swaggerui.setup(swagger));
+
  app.use(errorHandler.notFound)
  app.use(errorHandler.serverError)
 
